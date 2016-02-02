@@ -10,12 +10,18 @@
 | database. Just tell the factory how a default model should look.
 |
 */
-
+/*
 $factory->define(App\User::class, function ($faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
         'password' => str_random(10),
         'remember_token' => str_random(10),
+    ];
+});
+*/
+$factory->define(App\Widget::class, function ($faker) {
+    return [
+        'widget_name' => $faker->unique()->word,
     ];
 });

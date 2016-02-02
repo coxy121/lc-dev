@@ -1,7 +1,7 @@
 body{
     padding-top: 65px;
 }
-
+/*Logged in image circle*/
 .circ{
     width : 40px;
     vertical-align: middle;
@@ -11,4 +11,11 @@ body{
 }
 .circ:hover{
     box-shadow: 0 0 0 3px #f00;
+}
+/*Margin for datatable*/
+.baseMargin{
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
 }

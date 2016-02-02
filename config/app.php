@@ -150,6 +150,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
         Creativeorange\Gravatar\GravatarServiceProvider::class,
+        Socieboy\Alerts\AlertServiceProvider::class,
     ],
 
     /*
