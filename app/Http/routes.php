@@ -35,13 +35,14 @@ Route::get('privacy', 'PagesController@privacy');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+// Socialite routes
+Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
+
 //Test Controller
-Route::get('test', ['middleware' => ['auth', 'admin'],
-    'uses' => 'TestController@index']);
+Route::get('test', ['middleware' => ['auth', 'admin'], 'uses' => 'TestController@index']);
 
 // widget routes
-Route::get('widget/create', ['as' => 'widget.create',
-    'uses' => 'WidgetController@create']);
-Route::get( 'widget/{id}-{slug?}', ['as' => 'widget.show',
-    'uses' => 'WidgetController@show']);
+Route::get('widget/create', ['as' => 'widget.create', 'uses' => 'WidgetController@create']);
+Route::get( 'widget/{id}-{slug?}', ['as' => 'widget.show', 'uses' => 'WidgetController@show']);
 Route::resource('widget', 'WidgetController', ['except' => ['show', 'create']]);
