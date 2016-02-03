@@ -10,11 +10,15 @@ use App\Http\Controllers\Controller;
 use App\Widget;
 use Redirect;
 use Illuminate\Support\Facades\Auth;
+use App\Http\AuthTraits\OwnsRecord;
+use App\Exceptions\UnauthorizedException;
 
 class WidgetController extends Controller
 {
+    use OwnsRecord;
     public function __construct()
     {
+        $this->middleware('admin', ['except' => ['index', 'show']] );
         $this->middleware('auth', ['except' => ['index', 'show']] );
     }
 
@@ -95,6 +99,10 @@ class WidgetController extends Controller
     {
         $widget = Widget::findOrFail($id);
 
+        if ( ! $this->adminOrCurrentUserOwns($widget)){
+            throw new UnauthorizedException;
+        }
+
         return view('widget.edit', compact('widget'));
     }
 
@@ -113,6 +121,10 @@ class WidgetController extends Controller
         ]);
 
         $widget = Widget::findOrFail($id);
+
+        if ( ! $this->adminOrCurrentUserOwns($widget)){
+            throw new UnauthorizedException;
+        }
 
         $slug = str_slug($request->widget_name, "-");
 

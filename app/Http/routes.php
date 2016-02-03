@@ -10,6 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//Admin Index Route
+Route::get('admin', ['as' => 'admin', 'uses' => 'AdminController@index']);
+
 // API routes
 Route::any('api/widget', 'ApiController@widgetData');
 
@@ -25,13 +28,16 @@ Route::controllers([
 
 //Pages routes...
 Route::get('/', 'PagesController@index');
+Route::get('terms-of-service', 'PagesController@terms');
+Route::get('privacy', 'PagesController@privacy');
 
 // Registration routes…
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 //Test Controller
-Route::get('test', 'TestController@index');
+Route::get('test', ['middleware' => ['auth', 'admin'],
+    'uses' => 'TestController@index']);
 
 // widget routes
 Route::get('widget/create', ['as' => 'widget.create',
