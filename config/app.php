@@ -152,6 +152,7 @@ return [
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         Socieboy\Alerts\AlertServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -205,6 +206,7 @@ return [
         'Breadcrumb' => Bootstrapper\Facades\Breadcrumb::class,
         'Gravatar'  => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

@@ -5,6 +5,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Input;
+use App\Category;
+use App\Subcategory;
 
 class ApiController extends Controller
 {
@@ -48,6 +52,37 @@ class ApiController extends Controller
             'created_at')->get();
 
         return json_encode($result);
+
+    }
+
+    public function marketingImageData()
+    {
+        $result['data'] = DB::table('marketing_images')
+            ->select('id',
+                'image_name',
+                'image_extension',
+                'is_active',
+                'is_featured',
+                'image_weight',
+                'created_at')
+            ->get();
+        return json_encode($result);
+    }
+
+    public function categoryDropDownData()
+    {
+
+        $category_id = Input::get('category_id');
+
+        /*
+        $subcategories = Subcategory::where('category_id', '=', $category_id)
+            ->orderBy('subcategory_name', 'asc')
+            ->get();
+        */
+        $subcategories =  Category::find($category_id)->subcategory()->get();
+
+        return Response::json($subcategories);
+
 
     }
 }

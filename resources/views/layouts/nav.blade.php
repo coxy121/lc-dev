@@ -37,6 +37,9 @@
                         Content <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/widget">Widgets</a></li>
+                        @if (Auth::check() && Auth::user()->isAdmin())
+                            <li><a href="/marketing-image">Marketing Images</a></li>
+                        @endif
                     </ul>
                 </li>
                 @if (Auth::check())
@@ -45,6 +48,9 @@
                            role="button" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            @if(Auth::user()->isAdmin())
+                                <li><a href="/admin">Admin</a></li>
+                            @endif
                             <li><a href="/my-profile">Profile</a></li>
                             <li><a href="/settings">Settings</a></li>
                             <li>

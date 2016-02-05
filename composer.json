@@ -12,7 +12,8 @@
         "patricktalmadge/bootstrapper": "~5",
         "creativeorange/gravatar": "~1.0",
         "socieboy/alerts" : "dev-master",
-        "laravel/socialite": "^2.0"
+        "laravel/socialite": "^2.0",
+        "intervention/image": "~2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

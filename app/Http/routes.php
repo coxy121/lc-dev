@@ -14,9 +14,12 @@
 Route::get('admin', ['as' => 'admin', 'uses' => 'AdminController@index']);
 
 // API routes
+Route::get('api/category-dropdown', 'ApiController@categoryDropDownData');
+Route::any('api/marketing-image', 'ApiController@marketingImageData');
 Route::any('api/profile', 'ApiController@profileData');
-Route::any('api/widget', 'ApiController@widgetData');
 Route::any('api/user', 'ApiController@userData');
+Route::any('api/widget', 'ApiController@widgetData');
+
 
 // Authentication routes…
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -27,6 +30,9 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
+
+// MarketingImage routes
+Route::resource('marketing-image', 'MarketingImageController');
 
 // Pages routes...
 Route::get('/', 'PagesController@index');

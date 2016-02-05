@@ -23,6 +23,8 @@ class Widget extends Model
     */
     protected $fillable = ['widget_name',
         'slug',
+        'category_id',
+        'subcategory_id',
         'user_id'];
 
     /**

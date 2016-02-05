@@ -12,6 +12,7 @@ use Redirect;
 use Illuminate\Support\Facades\Auth;
 use App\Http\AuthTraits\OwnsRecord;
 use App\Exceptions\UnauthorizedException;
+use App\Category;
 
 class WidgetController extends Controller
 {
@@ -39,7 +40,8 @@ class WidgetController extends Controller
      */
     public function create()
     {
-        return view('widget.create');
+        $categories = Category::orderBy('category_name', 'asc')->get();
+        return view('widget.create', compact('categories'));
     }
 
     /**
