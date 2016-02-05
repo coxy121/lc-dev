@@ -2,6 +2,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/select/1.0.1/js/dataTables.select.min.js"></script>
 <script src="//cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>

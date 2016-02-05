@@ -16,8 +16,7 @@
 
         @if(Auth::user()->isAdmin())
 
-            {!! Breadcrumb::withLinks(['Home' => '/', 'Profile' => '/profile',
-                $profile->first_name. ' ' . $profile->last_name => $profile->id]) !!}
+            {!! Breadcrumb::withLinks(['Home' => '/', 'Profile' => '/profile',$profile->first_name. ' ' . $profile->last_name => $profile->id]) !!}
 
         @else
 

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    LC - Dev Test Page
+    <title>LC - Dev Test Page</title>
 @endsection
 @section('content')
     <h1>Lee Test</h1>

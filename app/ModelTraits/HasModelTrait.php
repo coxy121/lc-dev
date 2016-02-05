@@ -8,6 +8,12 @@ trait HasModelTrait
         return Carbon::parse($createdAtTimestamp)->format('m/d/Y');
     }
 
+    public function formatDatePickerDate($datePickerDate)
+    {
+        return Carbon::createFromFormat('m/d/Y', $datePickerDate)->format('Y-m-d');
+    }
+
+
     public function showStatusOf($record)
     {
 

@@ -11,9 +11,11 @@ class WidgetTest extends TestCase
      *
      * @return void
      */
+
     public function testWidgetFactory()
     {
-        $widgets = factory(Widget::class, 50)->create();
+        //$widgets = factory(Widget::class, 50)->create();
         //dd($widgets);
     }
+
 }

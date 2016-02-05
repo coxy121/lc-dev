@@ -6,6 +6,12 @@
 
 @endsection
 
+@section('css')
+
+
+
+@endsection
+
 @section('content')
 
     <div class="container">
@@ -43,8 +49,11 @@
         <div class="form-group">
             {!! Form::label('birthdate', 'Birthdate') !!}
         </div>
-        <div class="form-group">
-            {!! Form::date('birthdate', \Carbon\Carbon::now()) !!}
+        <div class="input-group date">
+
+
+            {!! Form::date('birthdate', null, array('type' => 'text', 'class' => 'form-control','placeholder' => 'Pick select your birth date', 'id' => 'birthdate')) !!}
+            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
         </div>
 
         <div class="form-group">
@@ -56,5 +65,11 @@
         {!! Form::close() !!}
 
     </div>
+
+@endsection
+
+@section('scripts')
+
+    @include('profile.datepicker-script')
 
 @endsection

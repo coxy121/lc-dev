@@ -10,9 +10,11 @@ use DB;
 use Redirect;
 use App\Profile;
 use App\User;
+use App\ModelTraits\HasModelTrait;
+
 class ProfileController extends Controller
 {
-    use OwnsRecord;
+    use OwnsRecord, HasModelTrait;
     public function __construct()
     {
         $this->middleware('auth');
@@ -80,7 +82,7 @@ class ProfileController extends Controller
         $profile = Profile::create(['first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'gender' => $request->gender,
-            'birthdate' => $request->birthdate,
+            'birthdate' => $this->formatDatePickerDate($request->birthdate),
             'user_id' => Auth::user()->id]);
         $profile->save();
         $user = User::where('id', '=', $profile->user_id)->first();
@@ -138,7 +140,7 @@ class ProfileController extends Controller
         $profile->update(['first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'gender' => $request->gender,
-            'birthdate' => $request->birthdate]);
+            'birthdate' => $this->formatDatePickerDate($request->birthdate)]);
         alert()->success('Congrats!', 'You updated your profile');
         return Redirect::route('profile.show', ['profile' => $profile]);
     }

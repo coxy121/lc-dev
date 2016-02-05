@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
 
-        {!! Breadcrumb::withLinks(['Home' => '/', 'Profile' => '/profile/show', $profile->first_name . ' ' . $profile->last_name]) !!}
+        {!! Breadcrumb::withLinks(['Home' => '/', 'Profile' => '/profile', $profile->first_name . ' ' . $profile->last_name]) !!}
 
         <h1>Update</h1>
 
@@ -45,8 +45,9 @@
         <div class="form-group">
             {!! Form::label('birthdate', 'Birthdate') !!}
         </div>
-        <div class="form-group">
-            {!!  Form::date('birthdate', $profile->birthdate) !!}
+        <div class="form-group input-group date">
+            {!! Form::date('birthdate',$profile->showBirthdate($profile->birthdate), array('type' => 'text', 'class' => 'form-control','placeholder' => 'Pick select your birth date', 'id' => 'birthdate')) !!}
+            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
         </div>
 
         <div class="form-group">
@@ -58,4 +59,10 @@
         {!! Form::close() !!}
 
     </div>
+@endsection
+
+@section('scripts')
+
+    @include('profile.datepicker-script')
+
 @endsection
