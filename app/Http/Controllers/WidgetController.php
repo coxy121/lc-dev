@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\AuthTraits\OwnsRecord;
 use App\Exceptions\UnauthorizedException;
 use App\Category;
+use App\Subcategory;
 
 class WidgetController extends Controller
 {
@@ -40,8 +41,9 @@ class WidgetController extends Controller
      */
     public function create()
     {
-        $categories = Category::orderBy('category_name', 'asc')->get();
-        return view('widget.create', compact('categories'));
+        $categories = Category::orderBy('category_name', 'asc')->lists('category_name', 'id');
+        $subcategories = array();
+        return view('widget.create', compact('categories','subcategories'));
     }
 
     /**
@@ -54,6 +56,8 @@ class WidgetController extends Controller
     {
         $this->validate($request, [
             'widget_name' => 'required|unique:widgets|string|max:40',
+            'category_id' => 'required',
+            'subcategory_id' =>  'required'
 
         ]);
 
@@ -61,6 +65,8 @@ class WidgetController extends Controller
 
         $widget = Widget::create(['widget_name' => $request->widget_name,
             'slug' => $slug,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
             'user_id' => Auth::id()]);
 
         $widget->save();
@@ -104,8 +110,9 @@ class WidgetController extends Controller
         if ( ! $this->adminOrCurrentUserOwns($widget)){
             throw new UnauthorizedException;
         }
-
-        return view('widget.edit', compact('widget'));
+        $categories = Category::orderBy('category_name', 'asc')->lists('category_name', 'id');
+        $subcategories = Subcategory::orderBy('subcategory_name', 'asc')->where('category_id','=',$widget->category_id)->lists('subcategory_name', 'id');
+        return view('widget.edit', compact('widget','categories','subcategories'));
     }
 
     /**
@@ -118,8 +125,9 @@ class WidgetController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'widget_name' => 'required|string|max:40|unique:widgets,widget_name,' .$id
-
+            'widget_name' => 'required|string|max:40|unique:widgets,widget_name,' .$id,
+            'category_id' => 'required',
+            'subcategory_id' =>  'required'
         ]);
 
         $widget = Widget::findOrFail($id);
@@ -132,6 +140,8 @@ class WidgetController extends Controller
 
         $widget->update(['widget_name' => $request->widget_name,
             'slug' => $slug,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
             'user_id' => Auth::id()]);
 
         alert()->success('Congrats!', 'You updated a widget');

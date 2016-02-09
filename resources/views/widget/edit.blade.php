@@ -23,23 +23,16 @@
                                   'class' => 'form',
                              ]) !!}
 
-                <!-- widget_name Form Input -->
-
-        <div class="form-group">
-
-            {!! Form::label('widget_name', 'Widget Name') !!}
-            {!! Form::text('widget_name', null, ['class' => 'form-control']) !!}
-
-        </div>
-
-        <div class="form-group">
-
-            {!! Form::submit('Update Widget', array('class'=>'btn btn-primary')) !!}
-
-        </div>
+        @include('widget.partials.widget-form', ['submitButtonText' => 'Update Widget'])
 
         {!! Form::close() !!}
 
     </div>
+
+@endsection
+
+@section('scripts')
+
+    @include('widget.dropdown-script', ['subcategory' => $widget->subcategory_id])
 
 @endsection

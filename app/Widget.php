@@ -27,8 +27,11 @@ class Widget extends Model
         'subcategory_id',
         'user_id'];
 
+
     /**
-     * Get the user that owns the widget.
+     * Returns a widgets user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
