@@ -37,17 +37,17 @@
         <!-- Gender Form Input -->
         <div class="form-group">
             {!! Form::label('gender', 'Gender') !!}
-            <br>
-            {!! Form::select('gender', [1 => 'Male', 0 => 'Female'], null, ['placeholder' => 'choose one...']); !!}
+            {!! Form::select('gender', [1 => 'Male', 0 => 'Female'], null, ['class' => 'form-control','placeholder' => 'choose one...']); !!}
         </div>
 
         <!-- Birthdate Form Input -->
         <div class="form-group">
             {!! Form::label('birthdate', 'Birthdate') !!}
-        </div>
-        <div class="form-group input-group date">
-            {!! Form::date('birthdate',$profile->showBirthdate($profile->birthdate), array('type' => 'text', 'class' => 'form-control','placeholder' => 'Pick select your birth date', 'id' => 'birthdate')) !!}
-            <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+
+            <div class="input-group date">
+                {!! Form::text('birthdate',$profile->showBirthdate($profile->birthdate), array('type' => 'text', 'class' => 'form-control','placeholder' => 'Pick select your birth date', 'id' => 'birthdate')) !!}
+                <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            </div>
         </div>
 
         <div class="form-group">

@@ -26,6 +26,9 @@ Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
+// Articles route
+Route::resource('articles', 'ArticlesController');
+
 // forgot password routes…
 Route::controllers([
     'password' => 'Auth\PasswordController',

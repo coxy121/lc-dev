@@ -92,4 +92,8 @@ class User extends Model implements AuthenticatableContract,
                 return 'Free';
         }
     }
+    public function articles()
+    {
+        return $this->hasMany('App\Article');
+    }
 }
